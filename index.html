@@ -21,17 +21,14 @@
 
     <p>Hello world! This is HTML5 Boilerplate.</p>
 
-
+<!--
+http://stackoverflow.com/questions/10115345/having-custom-controls-still-apply-when-go-fullscreen-on-a-html5-video
+-->
+<div id="video-container">
     <video id="video" controls="true">
         <source src="videos/madagascar3.mp4" type="video/mp4">
         <source src="videos/Big_Buck_Bunny_small.ogv" type="video/ogg">
     </video>
-
-
-<!--
-    <video id="video" src="videos/madagascar3.mp4" controls="true"></video>
--->
-
 
     <a href="#" id="play-button">Play</a><br />
     <a href="#" id="stop-button">Stop</a>
@@ -40,6 +37,7 @@
 
     <div id="time">s</div>
     <div id="duration">s</div>
+</div>
 
 <script>
     var video = document.getElementById('video');
@@ -65,7 +63,7 @@
 
     function playVideoAt(secs) {
         video.currentTime = secs;
-        video.play();
+        //video.play();
     }
 
 
@@ -83,7 +81,7 @@
 
     function setLoopPoint(video, key, loopStart) {
         if (parseInt(video.currentTime) == key && video.currentTime < (key + 0.5)) {
-            stopVideo();
+            //stopVideo();
             playVideoAt(loopStart);
             addContinueButton(key);
         }
