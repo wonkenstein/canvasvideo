@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" href="css/main.css">
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+    <!--[if lt IE 7]>
+        <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+    <![endif]-->
+
+    <hr /><hr />
+
+    <OBJECT style="border:1px solid blue;"
+classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B"
+codebase="http://www.apple.com/qtactivex/qtplugin.cab"
+width="640" height="360" postdomevents="true"
+autoplay='false'
+id="movie1">
+<param name="postdomevents" value="true" />
+<PARAM name="src" value="videos/trailer_720p.mov">
+
+<EMBED id="movie1" HEIGHT="360" WIDTH="640"  style="border:1px solid red;"
+SRC="videos/trailer_720p.mov"
+TYPE="video/quicktime"
+postdomevents="true"
+autoplay='false'
+PLUGINSPAGE="www.apple.com/quicktime/download"
+EnableJavaScript="true"
+NAME="movie1"
+/>
+
+</OBJECT>
+
+    <a href="#" id="play-button">Play</a><br />
+    <a href="#" id="stop-button">Stop</a>
+
+    <a href="#" id="continue-button"></a>
+
+    <div id="time">s</div>
+    <div id="duration">s</div>
+
+
+<script>
+
+function playVideo() {
+    document.movie1.Play();
+}
+
+function stopVideo() {
+    document.movie1.Stop();
+}
+
+function playVideoAt(secs) {
+    secs *= 1000;
+    document.movie1.SetTime(secs);
+    playVideo();
+}
+
+function addContinueButton(start) {
+    var button = $('#continue-button');
+    if (button.html() == '') {
+        button.html('Continue');
+        button.click(function(e){
+            playVideoAt(start + 0.5);
+            $(this).html('');
+        });
+    }
+}
+
+
+function setLoopPoint(video, key, loopStart) {
+
+    var t = video.GetTime()/1000;
+    if (parseInt(t) == key && t < (key + 0.5)) {
+        stopVideo();
+        playVideoAt(loopStart);
+        addContinueButton(key);
+    }
+}
+
+    var interval = false;
+
+    $(document).ready(function(e){
+
+    $('#play-button').click(function(e){
+        e.preventDefault();
+        playVideo();
+
+        interval = window.setInterval(function(){
+//            console.log(document.movie1.GetTime()/1000);
+            video = document.movie1;
+            setLoopPoint(video, 4, 1);
+            setLoopPoint(video, 10, 5);
+
+        }, '500');
+
+    });
+
+    $('#stop-button').click(function(e){
+        e.preventDefault();
+        stopVideo();
+        clearInterval(interval);
+    });
+
+
+    });
+
+
+
+</script>
+
+
+
+</body>
+</html>
