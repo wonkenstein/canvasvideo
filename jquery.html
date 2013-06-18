@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" href="css/main.css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+    <!--[if lt IE 7]>
+        <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+    <![endif]-->
+
+    <p>Hello world! This is HTML5 Boilerplate.</p>
+
+<!--
+http://stackoverflow.com/questions/10115345/having-custom-controls-still-apply-when-go-fullscreen-on-a-html5-video
+-->
+<div id="video-container">
+    <video id="video" controls="true">
+        <source src="videos/big_buck_bunny.mp4" type="video/mp4">
+        <source src="videos/big_buck_bunny.webm" type="video/webm">
+        <source src="videos/big_buck_bunny.ogv" type="video/ogg">
+    </video>
+</div>
+
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="WonksInteractiveVideo.js"></script>
+
+<script>
+
+$("#video").WonksInteractiveVideo({
+  propertyName: "a custom value",
+  keyframes: [
+  // [pause_time, goto_time]
+    [10,5],
+    [20,15],
+    [30,25],
+  ],
+  option1: 'option1'
+});
+
+/*
+var videoPlayer = {};
+
+    var video = document.getElementById('video');
+
+    $('#play-button').click(function(e){
+        e.preventDefault();
+        video.play();
+    });
+
+    $('#stop-button').click(function(e){
+        e.preventDefault();
+        video.pause();
+    });
+
+    function stopVideo() {
+        video.pause();
+    }
+
+    function playVideo() {
+        video.play();
+    }
+
+    function playVideoAt(secs) {
+        video.currentTime = secs;
+        //video.play();
+    }
+
+
+    function addContinueButton(start) {
+        var button = $('#continue-button');
+        if (button.html() == '') {
+            button.html('Continue');
+            button.click(function(e){
+                playVideoAt(start + 0.7);
+                $(this).html('');
+            });
+        }
+    }
+
+
+    function setLoopPoint(video, key, loopStart) {
+        if (parseInt(video.currentTime) == key && video.currentTime < (key + 0.5)) {
+            //stopVideo();
+            playVideoAt(loopStart);
+            addContinueButton(key);
+        }
+    }
+
+        video.addEventListener('timeupdate', function(){
+            console.log(video.currentTime);
+
+            setLoopPoint(video, 10, 5);
+
+            setLoopPoint(video, 20, 15);
+
+        });
+
+*/
+
+</script>
+
+</body>
+</html>
