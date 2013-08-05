@@ -69,6 +69,13 @@
             self.setKeyframes(parseInt(self._video.currentTime));
         });
 
+        el.on('seeking', function(e){
+            console.log('seeking');
+            button.off('click.WonksInteractiveVideo');
+            self._skipKeyFrame = false;
+            clearInterval(self._interval);
+        });
+
         var play_button = self.createButton('play-button', '[Play]');
         play_button.on('click.WonksInteractiveVideo',function(e){
             e.preventDefault();
@@ -124,14 +131,6 @@
     Plugin.prototype.addContinueButton = function(start_again) {
 
         var self = this;
-
-//        var button = $('#continue-button');
-/*
-        if (!button.length) {
-            $(this.element).after('<a id="continue-button" href="#"></a>');
-            button = $('#continue-button');
-        }
-        */
         var button = self.createButton('continue-button', '');
 
         if (button.html() == '') {
